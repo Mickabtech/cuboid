@@ -47,9 +47,9 @@ const Login = () => {
     }
 
     const data = { email, password };
-
     axios.post('http://localhost:5000/api/auth/login', data)
       .then(response => {
+        
         toast.success("Login Successful!");
         setTimeout(() => {
           navigate('/home');
