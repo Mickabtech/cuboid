@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const signupRouter = require('./routes/signup.routes.js')
 const userLogin = require('./routes/login.routes.js')
+const userProf = require('./routes/profile.routes.js')
 
 
 
@@ -14,9 +15,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use('/uploads', express.static('uploads'));
 app.use('/api/auth/signup', signupRouter)
 app.use('/api/auth/login', userLogin)
-
+app.use('/api/user/profile', userProf)
 
 const port = process.env.PORT || 4000;
 const mongoURL = process.env.MONGODB_URI
