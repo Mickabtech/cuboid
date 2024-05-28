@@ -17,12 +17,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="#">
-        Your Website
+        cubiod
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -38,6 +39,14 @@ const Signup = () => {
   const [lastname, setLastName] = useState('');
   const [firstname, setFirstName] = useState('');
   const navigate = useNavigate();
+
+ 
+  
+  // const handleSignupSuccess = () =>{
+  //   navigate('/dashboard')
+  // };
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the form from refreshing the page
@@ -161,7 +170,8 @@ const Signup = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2 }} 
+                // onClick={handleSignupSuccess}
               >
                 Sign Up
               </Button>
