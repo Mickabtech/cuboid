@@ -52,7 +52,7 @@ const Login = () => {
         
         toast.success("Login Successful!");
         setTimeout(() => {
-          navigate('/home');
+          navigate('/dashboard');
         }, 2000);
       })
       .catch(error => {
