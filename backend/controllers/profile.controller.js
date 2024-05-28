@@ -23,8 +23,19 @@ const profile = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+
+};
+
+const getProfile = async (req, res) => {
+  try {
+    const users = await Usermod.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 module.exports = {
- profile
+ profile,
+ getProfile
 };
