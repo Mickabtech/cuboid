@@ -28,7 +28,7 @@ const profile = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const users = await Usermod.find();
+    const users = await Profmod.find();
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
