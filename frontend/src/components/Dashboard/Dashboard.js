@@ -3,7 +3,8 @@ import AppHeader from './AppHeader'
 import SideNav from './SideNav'
 import {  Box, CssBaseline, ThemeProvider } from "@mui/material"
 import './Dashboard.css'
-import theme from '../../config/theme.js'
+import theme from '../../config/Theme'
+import { ProSidebarProvider } from 'react-pro-sidebar';
 
 
 
@@ -15,14 +16,16 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
+        <ProSidebarProvider>
         <CssBaseline />
         <AppHeader/>   
         <Box sx={styles.container}>
-        <SideNav />
-        <Box component={'main'} sx={styles.mainSection}>
+          <SideNav />
+          <Box component={'main'} sx={styles.mainSection}>
 
+          </Box>
         </Box>
-    </Box>
+    </ProSidebarProvider>
     </ThemeProvider>
     </React.Fragment>
   )
@@ -33,11 +36,11 @@ const styles = {
   container: {
       display: 'flex',
       bgcolor: 'neutral.light',
-      height: 'calc(100% - 64px)'
+      height: 'calc(100% - 64px)',
   },
 
   mainSection: {
-    p: 4,
+    p: 1,
     width: '100%',
     height: '100%',
     overflow: 'auto'
