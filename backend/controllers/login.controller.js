@@ -1,5 +1,9 @@
 const Usermod = require('../models/userModel.js');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+
+
+const secret = 'trop2726$%24t'
 
 const signin = async (req, res) => {
   try {
@@ -10,8 +14,13 @@ const signin = async (req, res) => {
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
 
+      const payload = {userId: user._id}
+      const token = jwt.sign(payload, secret, {expiresIn: '1h'})
+
       if (isMatch) {
-        res.json("Successful");
+        res.json({
+          message: "Successful",
+          token: token });
       } else {
         res.status(401).json("Password Incorrect");
       }

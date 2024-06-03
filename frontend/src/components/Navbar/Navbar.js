@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import "./Navbar.css" 
 import RoundedButton from '../Button/RoundedButton.js';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -6,23 +6,16 @@ import AppsIcon from '@mui/icons-material/Apps';
 
 const Navbar = () => {
 
-  const [sticky, setSticky] = useState(false);
-
-  useEffect(()=>{
-    window.addEventListener('scroll', ()=>{
-      window.scrollY > 50 ? setSticky(true) : setSticky(false);
-    })
-  }, [])
 
   return (
 
-    <nav className={`container ${sticky? 'dark-nav' : ''}`}>
+    <nav>
       
-      <h1>Cubiod</h1> 
+      <h1 className='txt'>Cubiod</h1> 
 
       <div className='leftside'>
       <RoundedButton content="Get Started" link="/login"/>
-      <AppsIcon style={{ fontSize: 50, color: 'white' }}/>
+      <AppsIcon style={{ fontSize: 50, color: 'white', paddingRight: "3rem" }}/>
       </div>
       
 

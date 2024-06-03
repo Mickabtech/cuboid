@@ -1,0 +1,15 @@
+
+
+.app-bar {
+  background-color: #333; 
+}
+
+.app-logo {
+  color: white;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+.app-color {
+  color: white;
+}

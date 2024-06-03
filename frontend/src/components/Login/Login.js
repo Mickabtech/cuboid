@@ -49,7 +49,7 @@ const Login = () => {
     const data = { email, password };
     axios.post('http://localhost:5000/api/auth/login', data)
       .then(response => {
-        
+        localStorage.setItem('token', response.data.token)
         toast.success("Login Successful!");
         setTimeout(() => {
           navigate('/dashboard');
@@ -62,8 +62,8 @@ const Login = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+    <ThemeProvider theme={defaultTheme}  >
+      <Container component="main" maxWidth="xs"  >
         <CssBaseline />
         <Box
           sx={{
@@ -83,7 +83,7 @@ const Login = () => {
             <TextField
               margin="normal"
               required
-              fullWidth
+              fullWidth      
               id="email"
               label="Email Address"
               name="email"

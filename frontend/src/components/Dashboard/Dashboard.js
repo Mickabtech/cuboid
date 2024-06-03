@@ -1,51 +1,24 @@
-import React from 'react'
-import AppHeader from './AppHeader'
-import SideNav from './SideNav'
-import {  Box, CssBaseline, ThemeProvider } from "@mui/material"
-import './Dashboard.css'
-import theme from '../../config/Theme'
-import { ProSidebarProvider } from 'react-pro-sidebar';
-
-
-
-
-
+import React from 'react';
+import AppHeader from './appheader/AppHeader';
+import SideNav from './sidenav/SideNav';
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import './Dashboard.css';
+import theme from '../../config/Theme';
 
 
 const Dashboard = () => {
   return (
-    <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <ProSidebarProvider>
+    <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppHeader/>   
-        <Box sx={styles.container}>
+        <AppHeader />
+        <Box className="dashboard-container">
           <SideNav />
-          <Box component={'main'} sx={styles.mainSection}>
-
+          <Box className="content">
+            {/* Main content goes here */}
           </Box>
         </Box>
-    </ProSidebarProvider>
     </ThemeProvider>
-    </React.Fragment>
-  )
-}
+  );
+};
 
-/** @type {import("@mui/material").SxProps} */
-const styles = {
-  container: {
-      display: 'flex',
-      bgcolor: 'neutral.light',
-      height: 'calc(100% - 64px)',
-  },
-
-  mainSection: {
-    p: 1,
-    width: '100%',
-    height: '100%',
-    overflow: 'auto'
-  }
- 
-}
-
-export default Dashboard
+export default Dashboard;
