@@ -1,6 +1,5 @@
 const Profmod = require('../models/profileModel')
 
-
 const profile = async (req, res) => {
   try {
     const { phonenumber, bio} = req.body;
