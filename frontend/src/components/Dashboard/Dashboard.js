@@ -1,23 +1,22 @@
 import React from 'react';
-import AppHeader from './appheader/AppHeader';
-import SideNav from './sidenav/SideNav';
-import { Box, CssBaseline, ThemeProvider } from "@mui/material";
-import './Dashboard.css';
-import theme from '../../config/Theme';
-
+import AppHeader from '../Dashboard/appheader/AppHeader';
+import SideNav from '../Dashboard/sidenav/SideNav';
+import { Box, CssBaseline } from "@mui/material";
 
 const Dashboard = () => {
   return (
-    <ThemeProvider theme={theme}>
-        <CssBaseline />
+    <React.Fragment>
+      <CssBaseline />
+      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         <AppHeader />
-        <Box className="dashboard-container">
+        <Box sx={{ display: 'flex', flexGrow: 1 }}>
           <SideNav />
-          <Box className="content">
+          <Box sx={{ flexGrow: 1, overflow: 'auto', padding: 2 }}>
             {/* Main content goes here */}
           </Box>
         </Box>
-    </ThemeProvider>
+      </Box>
+    </React.Fragment>
   );
 };
 

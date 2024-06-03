@@ -5,7 +5,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
-import './AppHeader.css'; 
 
 const AppHeader = () => {
   const navigate = useNavigate();
@@ -16,23 +15,25 @@ const AppHeader = () => {
   }
 
   return (
-    <AppBar position='sticky' className="app-bar">
+    <AppBar position='sticky' sx={{ backgroundColor: '#333' }}>
       <Toolbar>
-        <IconButton onClick={() => console.log('clicked')} color='secondary'>
-          <MenuIcon className="app-color" />
+        <IconButton onClick={() => console.log('clicked')} color='inherit'>
+          <MenuIcon sx={{ color: 'white' }} />
         </IconButton>
-        <Typography className="app-logo">Cuboid</Typography>
+        <Typography sx={{ color: 'white', cursor: 'pointer', marginLeft: 2 }}>
+          Cuboid
+        </Typography>
         <Box sx={{ flexGrow: 1 }} />
-        <IconButton title='Notifications' color='secondary'>
+        <IconButton title='Notifications' color='inherit'>
           <Badge badgeContent={21} color='error'>
-            <NotificationsIcon className="app-color" />
+            <NotificationsIcon sx={{ color: 'white' }} />
           </Badge>
         </IconButton>
-        <IconButton title='Settings' color='secondary'>
-          <SettingsIcon className="app-color" />
+        <IconButton title='Settings' color='inherit'>
+          <SettingsIcon sx={{ color: 'white' }} />
         </IconButton>
-        <IconButton title='Sign out' color='secondary' onClick={handleLogout}>
-          <LogoutIcon className="app-color" />
+        <IconButton title='Sign out' color='inherit' onClick={handleLogout}>
+          <LogoutIcon sx={{ color: 'white' }} />
         </IconButton>
       </Toolbar>
     </AppBar>
