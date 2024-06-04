@@ -30,7 +30,7 @@ const ProfileForm = () => {
     formData.append('picture', picture);
 
     try {
-      const response = await axios.post('/api/user/profile', formData, {
+      const response = await axios.put('/api/auth/signup', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

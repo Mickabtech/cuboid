@@ -33,7 +33,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-const Login = () => {
+const Login = ({setUser}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -49,8 +49,11 @@ const Login = () => {
     const data = { email, password };
     axios.post('http://localhost:5000/api/auth/login', data)
       .then(response => {
+        console.log(response.data);
+        setUser(response.data)
         localStorage.setItem('token', response.data.token)
         toast.success("Login Successful!");
+
         setTimeout(() => {
           navigate('/dashboard');
         }, 2000);

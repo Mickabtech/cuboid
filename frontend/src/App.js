@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Routes, Route} from 'react-router-dom';
 import Home from './components/Home/Home';
 import Signup from './components/Signup/Signup';
@@ -8,19 +8,21 @@ import Profile from './components/Profile/EditProfile'
 import PrivateRoute from './components/authcomponent/PrivateRoute.js';
 
 const App = () => {
+  const [user, setUser] = useState({})
+
   return (
     <Routes>
         {/* PUBLIC ROUTE */}
       <Route path='/' element={<Home/>}/>
       <Route path='/register' element={<Signup/>}/>
-      <Route path="/login" element={<Login/>}/>
+      <Route path="/login" element={<Login setUser={setUser} />}/>
     
 
       {/* PRIVATE ROUTE */}
 
       <Route element={<PrivateRoute/>}> 
 
-        <Route path ="/dashboard" element={<Dashboard/>}/>
+        <Route path ="/dashboard" element={<Dashboard user={user} />}/>
         <Route path ="/user/profile" element={<Profile/>}/>
       
       </Route>

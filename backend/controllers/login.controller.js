@@ -19,6 +19,7 @@ const signin = async (req, res) => {
 
       if (isMatch) {
         res.json({
+          user,
           message: "Successful",
           token: token });
       } else {
@@ -31,6 +32,8 @@ const signin = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
 
 module.exports = {
   signin

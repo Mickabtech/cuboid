@@ -1,6 +1,9 @@
 const Usermod = require('../models/userModel.js');
 const bcrypt = require('bcrypt');
 
+
+//Creating user 
+
 const signup = async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
@@ -37,6 +40,8 @@ const signup = async (req, res) => {
   }
 };
 
+
+//getUsers created
 const getUsers = async (req, res) => {
   try {
     const users = await Usermod.find();
@@ -46,7 +51,47 @@ const getUsers = async (req, res) => {
   }
 };
 
+//getUsers by Id 
+const getUser = async(req, res)=>{
+  try {
+
+    const {id} = req.params;
+    const user = await Usermod.findById(id);
+    res.status(200).json(user)
+    
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+
+}
+
+//update userInfo
+
+const updateUser = async(req, res)=>{
+    try {
+      const {id} = req.params;
+      const user = await Usermod.findByIdAndUpdate(id, req.body)
+      if (!user){
+        return res.status(404).json({
+          message: "User not found"
+        })
+      }
+
+      const updatedUser = await Usermod.findById(id)
+      res.status(200).json(updatedUser)
+    } catch (error) {
+      res.status(500).json({message: error.message})
+    }
+
+
+
+
+}
+
 module.exports = {
   signup,
   getUsers,
+  getUser,
+  updateUser
+
 };
