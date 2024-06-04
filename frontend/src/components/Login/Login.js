@@ -50,7 +50,9 @@ const Login = ({setUser}) => {
     axios.post('http://localhost:5000/api/auth/login', data)
       .then(response => {
         setUser(response.data)
+        
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('userId', response.data.user._id)
         toast.success("Login Successful!");
 
         setTimeout(() => {

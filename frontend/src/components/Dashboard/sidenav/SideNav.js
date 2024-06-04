@@ -9,11 +9,12 @@ const SideNav = ({user}) => {
 const lastname = user.user.lastname
 const firstname = user.user.firstname
 const summary = user.user.summary
+const picture = user.user.picture
 
   return (
     <Box sx={{ width: "300px", backgroundColor: '#545353'}}>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3 }}>
-        <Avatar sx={{ width: 80, height: 80 }} alt={firstname} src={user.picture || '/default-avatar.png'} />
+        <Avatar sx={{ width: 80, height: 80 }} alt={firstname} src={ picture } />
         <Typography variant='body2' sx={{ marginTop: 1 }}>
           {`${firstname} ${lastname}`}
         </Typography>

@@ -7,14 +7,15 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/ReactToastify.css'
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
-const ProfileForm = () => {
-  const { _id } = useParams();
+const ProfileForm = ({user}) => {
+const userID = localStorage.getItem('userId')
+console.log(userID)
+  console.log("beginning")
   const [phonenumber, setPhonenumber] = useState('');
   const [bio, setBio] = useState('');
   const [summary, setSummary] = useState('');
@@ -22,28 +23,13 @@ const ProfileForm = () => {
   const [preview, setPreview] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (_id) {
-      axios.get(`http://localhost:5000/api/auth/signup/${_id}`)
-        .then((response) => {
-          const { phonenumber, bio, summary, picture } = response.data;
-          setPhonenumber(phonenumber || '');
-          setBio(bio || '');
-          setSummary(summary || '');
-          setPreview(picture || null);
-        })
-        .catch((error) => {
-          toast.error(getErrorMessage(error));
-        });
-    } else {
-      toast.error('User ID is not defined.');
-    }
-  }, [_id]);
+  console.log(user)
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setPicture(file);
 
+    // Create a preview URL for the uploaded image
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreview(reader.result);
@@ -51,13 +37,22 @@ const ProfileForm = () => {
     reader.readAsDataURL(file);
   };
 
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/auth/signup/${userID}`)
+      .then((response) => {
+        const { phonenumber, bio, summary, picture } = response.data;
+        setPhonenumber(phonenumber || '');
+        setBio(bio || '');
+        setSummary(summary || '');
+        setPreview(picture || null);
+      })
+      .catch((error) => {
+        toast.error('Error fetching user data:', error);
+      });
+  }, [userID]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (!_id) {
-      toast.error('User ID is not defined. Cannot submit form.');
-      return;
-    }
 
     const formData = new FormData();
     formData.append('phonenumber', phonenumber);
@@ -67,7 +62,7 @@ const ProfileForm = () => {
       formData.append('picture', picture);
     }
 
-    axios.put(`http://localhost:5000/api/auth/signup/${_id}`, formData, {
+    axios.put(`http://localhost:5000/api/auth/signup/${userID}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -79,20 +74,12 @@ const ProfileForm = () => {
         }, 1000);
       })
       .catch((error) => {
-        console.error(error);
-        toast.error(getErrorMessage(error));
+        console.log(error);
+        toast.error('There was an error updating the profile.');
       });
   };
 
-  const getErrorMessage = (error) => {
-    if (error.response && error.response.data && error.response.data.message) {
-      return error.response.data.message;
-    } else if (error.message) {
-      return error.message;
-    } else {
-      return 'An unknown error occurred';
-    }
-  };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -131,8 +118,8 @@ const ProfileForm = () => {
               fullWidth
               id="summary"
               label="Summary"
-              name="summary"
-              autoComplete="summary"
+              name="Summary"
+              autoComplete="Summary"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
             />
@@ -174,7 +161,7 @@ const ProfileForm = () => {
           </Box>
         </Box>
       </Container>
-      <ToastContainer/>
+      <ToastContainer />
     </ThemeProvider>
   );
 };

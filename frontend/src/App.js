@@ -10,7 +10,7 @@ import PrivateRoute from './components/authcomponent/PrivateRoute.js';
 
 const App = () => {
   const [user, setUser] = useState({})
-
+  console.log(user);
   return (
     <Routes>
         {/* PUBLIC ROUTE */}
@@ -24,7 +24,7 @@ const App = () => {
       <Route element={<PrivateRoute/>}> 
 
         <Route path ="/dashboard" element={<Dashboard user={user} />}/>
-        <Route path ="/user/profile" element={<Profile />}/>
+        <Route path ="/user/profile" element={<Profile user = {user}/>}/>
         <Route path ="/user/userprofile" element={<UserProfile user={user}/>}/>
       
       </Route>
