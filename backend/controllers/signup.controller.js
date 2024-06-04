@@ -67,26 +67,35 @@ const getUser = async(req, res)=>{
 
 //update userInfo
 
-const updateUser = async(req, res)=>{
-    try {
-      const {id} = req.params;
-      const user = await Usermod.findByIdAndUpdate(id, req.body)
-      if (!user){
-        return res.status(404).json({
-          message: "User not found"
-        })
-      }
 
-      const updatedUser = await Usermod.findById(id)
-      res.status(200).json(updatedUser)
-    } catch (error) {
-      res.status(500).json({message: error.message})
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Construct the update object
+    const updateData = {
+      ...req.body,
+    };
+
+    // If there's a file, add the file path to the update object
+    if (req.file) {
+      updateData.picture = req.file.path;
     }
 
+    // Update the user
+    const user = await Usermod.findByIdAndUpdate(id, updateData, { new: true });
+    
+    if (!user) {
+      return res.status(404).json({
+        message: 'User not found',
+      });
+    }
 
-
-
-}
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 module.exports = {
   signup,

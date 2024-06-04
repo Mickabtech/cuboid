@@ -49,7 +49,6 @@ const Login = ({setUser}) => {
     const data = { email, password };
     axios.post('http://localhost:5000/api/auth/login', data)
       .then(response => {
-        console.log(response.data);
         setUser(response.data)
         localStorage.setItem('token', response.data.token)
         toast.success("Login Successful!");
