@@ -7,6 +7,8 @@ import Dashboard from './components/Dashboard/Dashboard.js';
 import Profile from './components/Profile/EditProfile';
 import UserProfile from './components/Profile/Profile.js';
 import PrivateRoute from './components/authcomponent/PrivateRoute.js';
+import { ChatContextProvider } from './context/ChatContext.jsx';
+import Chat from './pages/Chat.jsx';
 
 const App = () => {
  
@@ -18,6 +20,7 @@ const App = () => {
   }, [user]);
 
   return (
+    <ChatContextProvider user={user}>
     <Routes>
       {/* PUBLIC ROUTE */}
       <Route path='/' element={<Home />} />
@@ -29,8 +32,10 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard user={user} />} />
         <Route path="/user/profile" element={<Profile user={user} />} />
         <Route path="/user/userprofile" element={<UserProfile user={user} />} />
+        <Route path="user/chat" element={<Chat user={user}/>} />
       </Route>
     </Routes>
+    </ChatContextProvider>
   );
 };
 
