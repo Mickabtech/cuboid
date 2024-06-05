@@ -8,7 +8,11 @@ import mobile from "../../assets/mobile.png.png"
 import wing from "../../assets/pngwing.com.png"
 
 
+
+
 const Hero = () => {
+
+
   return (
     <div className='total'>
     <div className='Hero'>
