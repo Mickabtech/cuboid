@@ -14,8 +14,7 @@ const defaultTheme = createTheme();
 
 const ProfileForm = ({user}) => {
 const userID = localStorage.getItem('userId')
-console.log(userID)
-  console.log("beginning")
+
   const [phonenumber, setPhonenumber] = useState('');
   const [bio, setBio] = useState('');
   const [summary, setSummary] = useState('');
@@ -70,7 +69,7 @@ console.log(userID)
       .then(() => {
         toast.success('User Edited Successfully!!!');
         setTimeout(() => {
-          navigate('/user/userprofile');
+          navigate('/dashboard');
         }, 1000);
       })
       .catch((error) => {

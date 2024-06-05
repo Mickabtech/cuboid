@@ -70,7 +70,7 @@ const Signup = () => {
       .then(() => {
         toast.success("Registration Successful !!!");
         setTimeout(() => {
-          navigate('/');
+          navigate('/login');
         }, 2000);
       })
       .catch((error) => {

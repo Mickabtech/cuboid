@@ -6,6 +6,8 @@ const signupRouter = require('./routes/signup.routes.js')
 const userLogin = require('./routes/login.routes.js')
 const userProf = require('./routes/profile.routes.js')
 
+const path = require('path');
+
 
 
 dotenv.config();
@@ -16,8 +18,9 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use(express.urlencoded({extended: false}));
-app.use('/uploads', express.static('uploads'));
 app.use('/api/auth/signup', signupRouter)
 app.use('/api/auth/login', userLogin)
 app.use('/api/user/profile', userProf)
