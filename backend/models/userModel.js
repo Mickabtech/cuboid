@@ -1,17 +1,36 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
+  firstname: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 24
+  },
+  lastname: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 24
+  },
+  email: {
+    type:String,
+    required: true,
+    minlength: 3,
+    maxlength: 200,
+    unique: true
+  },
+  password: {
+    type:String,
+    required: true,
+    minlength: 3,
+    maxlength: 1024,
+    unique: true
+  }
+}, 
+{
+  timestamps: true
+});
 
-  firstname: String,
-  lastname: String,
-  email: String,
-  password: String,
-  phonenumber: String,
-  summary: String,
-  bio: String,
-  picture: String,
-
-})
-
-const UserModel = mongoose.model('cuboid user', UserSchema);
+const UserModel = mongoose.model("User Cuboid", UserSchema)
 module.exports = UserModel;

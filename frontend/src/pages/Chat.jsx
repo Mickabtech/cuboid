@@ -1,11 +1,6 @@
-import React, { useContext } from 'react'
-import { ChatContext } from '../context/ChatContext'
+import React from 'react'
 
 const Chat = () => {
-
-  const {userChats, isUserChatsLoading, userChatsError} = useContext(ChatContext)
-
-  console.log("UserChats", userChats)
   return (
     <div>Chat</div>
   )

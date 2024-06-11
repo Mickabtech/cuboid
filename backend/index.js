@@ -2,13 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const signupRouter = require('./routes/signup.routes.js')
-const userLogin = require('./routes/login.routes.js')
-const userProf = require('./routes/profile.routes.js')
-const chatRoute = require('./routes/chat.routes.js')
-const messageRoute = require('./routes/message.routes.js')
-
-const path = require('path');
+const userRoute = require('./routes/userRoute')
+const chatRoute = require('./routes/chatRoute')
+const messageRoute = require('./routes/messageRoute')
 
 
 
@@ -16,18 +12,16 @@ dotenv.config();
 
 
 const app = express();
+
 app.use(cors());
 
 app.use(express.json());
-
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 app.use(express.urlencoded({extended: false}));
-app.use('/api/auth/signup', signupRouter)
-app.use('/api/auth/login', userLogin)
-app.use('/api/user/profile', userProf)
+
+app.use('/api/users', userRoute)
 app.use('/api/chats', chatRoute)
 app.use('/api/messages', messageRoute)
+
 
 const port = process.env.PORT || 4000;
 const mongoURL = process.env.MONGODB_URI
