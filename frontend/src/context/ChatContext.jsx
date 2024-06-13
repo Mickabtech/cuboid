@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { baseUrl, getRequest, postRequest } from "../utils/services";
 import { useEffect } from "react";
+import { useCallback } from "react";
 
 export const ChatContext = createContext();
 
@@ -20,8 +21,9 @@ export const ChatContextProvider = ({ children, user }) => {
       }
 
       const pChats = response.filter((u) =>{
-          let isChatCreated = false
-          if(user._id === u._id)  return false  
+          let isChatCreated = false;
+
+          if (user?._id === u._id)  return false;  
 
           if(userChats){
            isChatCreated = userChats?.some((chat)=>{
@@ -36,7 +38,7 @@ export const ChatContextProvider = ({ children, user }) => {
       setPotentialChats(pChats)
     }
 
-    getUsers()
+    getUsers();
 
   }, [userChats])
 
@@ -61,13 +63,29 @@ export const ChatContextProvider = ({ children, user }) => {
     getUserChats();
   }, [user]);
 
+  const createChat = useCallback(async (firstId, secondId) => {
+
+    const response = await postRequest(`${baseUrl}/chats/`, JSON.stringify({
+      firstId,
+      secondId,
+    }));
+
+    if(response.error){
+      return console.log("Error creating chat", response)
+    }
+
+    setUserChats((prev => [...prev, response]))
+
+  }, [])
+
   return (
     <ChatContext.Provider
       value={{
         userChats,
         isUserChatsloading,
         userChatsError,
-        potentialChats
+        potentialChats,
+        createChat,
       }}
     >
       {children}
