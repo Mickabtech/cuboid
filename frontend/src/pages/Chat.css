@@ -1,0 +1,13 @@
+.horizontal{
+  display: flex;
+  gap: 100px;
+}
+
+.messages-box {
+  height: 85vh;
+}
+
+body{
+  margin-top: 80px;
+  padding-left: 10px;
+}

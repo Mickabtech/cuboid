@@ -17,21 +17,21 @@ const Navbar = () => {
 
       {user && <span className='name'>Logged in as {user?.lastname}</span>}
 
-      <div className='leftside'>
+      <div >
         {
-          user && (<>
+          user && (<div className='header'>
           <Link onClick={()=> logoutUser()}>
           <RoundedButton content="Logout" link="/login"/>
           </Link>
-          </>)
+          </div>)
         }
 
-        {!user && (<>
+        {!user && (<div className='header'>
         
           <RoundedButton content="Login" link="/login"/>
           <RoundedButton content="Register" link="/register"/>
         
-        </>)}
+        </div>)}
       
       </div>
       

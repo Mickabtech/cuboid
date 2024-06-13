@@ -6,12 +6,15 @@ import Register from './pages/Register'
 import Chat from './pages/Chat'
 import Navbar from './components/Navbar/Navbar'
 import { AuthContext } from './context/AuthContext'
+import { ChatContextProvider } from './context/ChatContext'
+
+
 
 const App = () => {
 
   const { user } = useContext(AuthContext)
   return (
-    <>
+    <ChatContextProvider user = {user}>
     <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -20,7 +23,7 @@ const App = () => {
         <Route path='/chat' element={user ? <Chat/> : <Login/> }/>
         <Route path='*' element={<Navigate to='/'/>}/>
       </Routes>
-    </>
+    </ChatContextProvider>
   )
 }
 

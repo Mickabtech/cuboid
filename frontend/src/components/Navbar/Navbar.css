@@ -13,18 +13,16 @@ nav{
   background-color: #333333;
 }
 
-
-
-.leftside{
- display: flex;
- justify-content: space-between;
- gap: 2rem;
-}
-
 .txt{
-  padding-left: 3rem;
+  padding-left: 1rem;
 }
 
 .name{
   color: goldenrod;
+}
+
+.header{
+  display: flex;
+  gap: 2rem;
+  padding-right: 30px;
 }
