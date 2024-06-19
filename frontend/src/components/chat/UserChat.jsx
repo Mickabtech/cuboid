@@ -1,6 +1,6 @@
 import React from 'react'
 import './UserChat.css'
-import { Stack } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 import Avatar from '../../assets/avatar.svg'
 import { useFetchRecipientUser } from '../../hooks/useFetchRecipient'
 
@@ -9,7 +9,7 @@ const UserChat = ({chat, user}) => {
   const {recipientUser} = useFetchRecipientUser(chat, user)
 
   return (
-    <div>
+    <Container>
       <Stack className='user-card' role='button'>
         <div className="d-flex">
           <div className="me-2">
@@ -33,7 +33,7 @@ const UserChat = ({chat, user}) => {
             <span className='user-online'></span>
           </div>
       </Stack>
-    </div>
+    </Container>
   )
 }
 

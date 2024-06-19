@@ -26,3 +26,11 @@ nav{
   gap: 2rem;
   padding-right: 30px;
 }
+
+.btn101{
+  border-radius: 20px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  padding: 5px 20px;
+}

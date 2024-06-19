@@ -1,6 +1,6 @@
 .horizontal{
   display: flex;
-  gap: 100px;
+  gap: 10px;
 }
 
 .messages-box {
