@@ -5,8 +5,6 @@
   border-radius: 10px;
   width: 60%;
   margin-left: 10px;
-
-  /* added */
   display: flex;
   flex-direction: column;
 }
@@ -42,6 +40,7 @@
   background: #00bd9b;
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
 }
 
 .chat-input {
@@ -61,4 +60,27 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+}
+
+
+.message.others {
+  align-self: flex-end;
+  background-color: #f1f1f1;
 }

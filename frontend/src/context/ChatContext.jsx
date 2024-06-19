@@ -14,9 +14,11 @@ export const ChatContextProvider = ({ children, user }) => {
   const [messages, setMessages] = useState(null);
   const [isMessagesLoading, setIsMessagesLoading] = useState(false);
   const [messagesError, setMessagesError] = useState(null);
+  const [sendTextMessageError, setSendTextMessageError] = useState(null)
+  const [newMessage, setNewMessage] = useState(null)
 
  
-
+// hook to get users in a chat
   useEffect(() => {
     const getUsers = async () => {
       const response = await getRequest(`${baseUrl}/users`);
@@ -44,6 +46,7 @@ export const ChatContextProvider = ({ children, user }) => {
     getUsers();
   }, [userChats]);
 
+  //hook to get users chat
   useEffect(() => {
     const getUserChats = async () => {
       if (user?._id) {
@@ -65,6 +68,7 @@ export const ChatContextProvider = ({ children, user }) => {
     getUserChats();
   }, [user]);
 
+  //hook to get messages
   useEffect(() => {
     const getMessages = async () => {
       setIsMessagesLoading(true);
@@ -87,16 +91,33 @@ export const ChatContextProvider = ({ children, user }) => {
     getMessages();
   }, [currentChat]);
 
+// Function to send text mesage 
+  const sendTextMessage = useCallback( async (textMessage, sender, currentChatId, setTextMessage)=>{
+    if(!textMessage) return console.log("You must type something...")
 
-  const sendTextMessage = useCallback(()=>{
+      const response = await postRequest(`${baseUrl}/messages`, JSON.stringify({
+        chatId: currentChatId,
+        senderId: sender._id,
+        text: textMessage
+      }));
 
-    
+      if (response.error) {
+        return setSendTextMessageError(response);
+      }
+
+      setNewMessage(response);
+      setMessages((prev)=>[...prev, response])
+      setTextMessage("")
+
+
   }, [])
 
+// Function to update current chat
   const updateCurrentChat = useCallback((chat) => {
     setCurrentChat(chat);
   }, []);
 
+  //function to create chat
   const createChat = useCallback(async (firstId, secondId) => {
     const response = await postRequest(
       `${baseUrl}/chats/`,
@@ -126,6 +147,7 @@ export const ChatContextProvider = ({ children, user }) => {
         isMessagesLoading,
         messagesError,
         currentChat,
+        sendTextMessage
       }}
     >
       {children}
