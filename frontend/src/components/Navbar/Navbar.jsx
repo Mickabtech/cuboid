@@ -15,6 +15,7 @@ const Navbar = () => {
 
   return (
     <nav>
+      
       <h1 className="txt">Cubiod</h1>
       {user && <span className="name">Logged in as {user?.lastname}</span>}
 

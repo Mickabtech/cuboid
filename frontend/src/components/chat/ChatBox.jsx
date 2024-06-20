@@ -45,7 +45,7 @@ const ChatBox = () => {
   </div>
 
   <Stack gap={3} className='messages'>
-      {messages && messages.map((message, index)=> <Stack key={index} className={`${message?.senderId === user?._id ? "message self align-self-start " : 'message align-self-end'}`}>
+      {messages && messages.map((message, index)=> <Stack key={index} className={`message ${message?.senderId === user?._id ? "self" : 'others'}`}>
         
         <span>
           {message.text}
