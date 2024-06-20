@@ -18,9 +18,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use('/api/users', userRoute)
-app.use('/api/chats', chatRoute)
-app.use('/api/messages', messageRoute)
+
+const apiUser = process.env.API_USER
+const apiChat = process.env.API_CHAT
+const apiMessage = process.env.API_MESSAGE
+
+app.use(apiUser, userRoute)
+app.use(apiChat, chatRoute)
+app.use(apiMessage, messageRoute)
 
 
 const port = process.env.PORT || 4000;
