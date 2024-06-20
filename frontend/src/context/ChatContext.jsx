@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { baseUrl, getRequest, postRequest } from "../utils/services";
 import { useEffect } from "react";
 import { useCallback } from "react";
+import { io } from 'socket.io-client'
 
 export const ChatContext = createContext();
 
@@ -16,6 +17,68 @@ export const ChatContextProvider = ({ children, user }) => {
   const [messagesError, setMessagesError] = useState(null);
   const [sendTextMessageError, setSendTextMessageError] = useState(null);
   const [newMessage, setNewMessage] = useState(null);
+  const [socket, setSocket] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([])
+
+  console.log("OnlineUsers", onlineUsers)
+
+  //Initilize Socket
+  useEffect(()=>{
+    const newSocket = io("http://localhost:3000");
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect()
+    }
+  }, [user])
+
+  // add online users 
+  
+  useEffect(()=>{
+    if (socket === null) return
+    socket.emit("addNewUser", user?._id);
+    socket.on("getOnlineUsers", (res) => {
+      setOnlineUsers(res)
+
+    })
+
+    return () => {
+      socket.off('getOnlineUsers')
+    }
+
+  }, [socket]);
+
+  // Connect socket to send message 
+
+  useEffect(()=>{
+    if (socket === null) return;
+
+    const recipientId = currentChat?.members?.find((id) => id !== user?._id);
+
+    socket.emit("sendMessage", {...newMessage, recipientId});
+    
+
+  }, [newMessage]);
+
+  // receive message from socket
+
+  useEffect(()=>{
+    if (socket === null) return;
+
+    socket.on("getMessage", res =>{
+      if(currentChat?._id !== res.chatId) return
+      setMessages((prev) => [...prev, res])
+
+    })
+
+    return () =>{
+      socket.off("getMessage")
+    }
+    
+
+  }, [socket, currentChat]);
+
+
 
   // hook to get users in a chat
   useEffect(() => {
@@ -109,7 +172,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
       setNewMessage(response);
       setMessages((prev) => [...prev, response]);
-      setTextMessage("");
+      setTextMessage(" ");
     },
     []
   );
@@ -150,6 +213,10 @@ export const ChatContextProvider = ({ children, user }) => {
         messagesError,
         currentChat,
         sendTextMessage,
+        sendTextMessageError,
+        newMessage,
+        socket,
+        onlineUsers
       }}
     >
       {children}

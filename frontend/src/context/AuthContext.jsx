@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export const AuthContext = createContext();
 
 const userLog = import.meta.env.VITE_USER_LOG;
+const userReg = import.meta.env.VITE_USER_REG;
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -46,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
       setRegisterError(null);
 
       const response = await postRequest(
-        `${baseUrl}${userLog}`,
+        `${baseUrl}${userReg}`,
         JSON.stringify(registerInfo)
       );
 
