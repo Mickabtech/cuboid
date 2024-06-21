@@ -20,8 +20,8 @@ const Hero = () => {
       <h1>Connect with your friends easily</h1>
       <p>The best app for your communication</p>
       <div className='btn'>
-      <RoundedButton content="App Store" icon={AppleIcon} link="/login" color="blue" txt="white" />
-      <RoundedButton content="Google Play" icon={ShopIcon} link="/register" color="green" />
+      <RoundedButton content="chat now" icon={AppleIcon} link="/chat" color="blue" txt="white" />
+      <RoundedButton content="chat now" icon={ShopIcon} link="/chat" color="green" />
       </div>
       </div>
       
