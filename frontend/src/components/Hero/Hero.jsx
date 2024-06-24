@@ -24,9 +24,7 @@ const Hero = () => {
       <RoundedButton content="chat now" icon={ShopIcon} link="/chat" color="green" />
       </div>
       </div>
-      
-     
-      
+
     </div>
 
     <div className='downhere'>

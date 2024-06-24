@@ -11,3 +11,15 @@ body{
   margin-top: 80px;
   padding-left: 10px;
 }
+
+@media (max-width: 768px) {
+  .horizontal{
+    display: flex;
+    gap: 40px;
+    /* margin-right: 1px; */
+  }
+  .messages-box {
+    height: 85vh;
+    width: 100px;
+  }
+}

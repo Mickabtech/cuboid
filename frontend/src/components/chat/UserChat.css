@@ -15,14 +15,15 @@
   width: 170px;
 }
 
-.user-card .name {
-  font-weight: 700;
+ .names {
+  font-size: 16pt;
+  /* font-weight: 600; */
   color: aliceblue;
 }
 
-.user-card .text,
-.user-card .date {
-  font-size: 14px;
+ .text,
+.date {
+  font-size: 10pt;
   color: rgb(180, 180, 180);
 }
 
@@ -41,17 +42,6 @@
   align-items: end;
 }
 
-.this-user-notifications {
-  display: flex;
-  background: #00bd9b;
-  height: 20px;
-  width: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-}
 
 .user-online {
   display: inline-block;
@@ -63,4 +53,38 @@
   top: 0;
   right: 20px;
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .user-card{
+    width: 80px;
+    display: block;
+    color: white;
+  }
+  .d-flex{
+    display: flex;
+    gap: 2;
+  }
+ .text-content {
+    width: 80px;
+  }
+
+ .names {
+  margin-top: 10px;
+    font-size: 10pt;
+    font-weight: 400;
+    color: aliceblue;
+  }
+  
+  .user-card .text,
+.user-card .date {
+  font-size: 6pt;
+  color: rgb(180, 180, 180);
+}
+
+.ava{
+  width: 25px;
+}
+
+
 }

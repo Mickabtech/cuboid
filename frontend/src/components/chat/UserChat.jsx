@@ -51,12 +51,12 @@ const UserChat = ({ chat, user }) => {
       >
         <div className="d-flex">
           <div className="me-2">
-            <img src={Avatar} height="35px" />
+            <img src={Avatar} height="35px" className="ava" />
           </div>
 
           <div className="text-content">
-            <div className="name">
-              {recipientUser?.username}
+            <div className="names">
+              <div className="names" >{recipientUser?.username}</div>
 
               <div className="text">
                 {latestMessage?.text && (

@@ -23,8 +23,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="#">
-        Your Website
+      <Link color="inherit" href="/">
+        cuboid
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -49,7 +49,7 @@ const Register = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 16,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
