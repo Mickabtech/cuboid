@@ -19,7 +19,7 @@ const Notification = () => {
 
     return {
       ...n,
-      senderName: sender?.lastname,
+      senderName: sender?.username,
     };
   });
 

@@ -56,7 +56,7 @@ const UserChat = ({ chat, user }) => {
 
           <div className="text-content">
             <div className="name">
-              {recipientUser?.firstname}
+              {recipientUser?.username}
 
               <div className="text">
                 {latestMessage?.text && (

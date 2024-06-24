@@ -18,7 +18,7 @@ const PotentialChats = () => {
                 key={index}
                 onClick={() => createChat(user._id, u._id)}
               >
-                {u.lastname}
+                {u.username}
                 <span className={onlineUsers?.some((user) => user?.userId === u?._id ) ? "user-online": ''}></span>
               </div>
             );

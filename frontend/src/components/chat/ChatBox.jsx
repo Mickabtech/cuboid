@@ -48,7 +48,7 @@ const ChatBox = () => {
   return (
     <Stack gap={4} className="chat-box">
       <div className="chat-header">
-        <strong>{recipientUser?.lastname}</strong>
+        <strong>{recipientUser?.username}</strong>
       </div>
 
       <Stack gap={3} className="messages">
