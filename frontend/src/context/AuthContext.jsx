@@ -14,6 +14,7 @@ export const AuthContextProvider = ({ children }) => {
   const [registerInfo, setRegisterInfo] = useState({
     firstname: "",
     lastname: "",
+    username: "",
     email: "",
     password: "",
   });

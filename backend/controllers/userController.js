@@ -14,24 +14,33 @@ const registerUser = async (req, res) =>{
 
   try {
 
-    const {firstname, lastname, email, password } = req.body
+    const {firstname, lastname, username, email, password } = req.body
+
+    if(!firstname || !lastname || !username || !email || !password) 
+      return res.status(400).json("All fields are required")
+
+    if(!validator.isEmail(email)) 
+      return res.status(400).json("Email must be a valid email")
+
+    if(!validator.isStrongPassword(password)) 
+      return res.status(400).json("Password must a srong password....")
+
 
     let user = await UserModel.findOne({email});
 
-    if(user) return res.status(400).json("User exists....")
+    if(user) return res.status(400).json("User with this email exist....")
     
-    if(!firstname || !lastname || !email || !password) 
-      return res.status(400).json("All fields are required")
+      user = await UserModel.findOne({ username });
+      if (user) {
+        return res.status(400).json("Username already taken");
+      }
+  
 
-      if(!validator.isEmail(email)) 
-        return res.status(400).json("Email must be a valid email")
-
-      if(!validator.isStrongPassword(password)) 
-        return res.status(400).json("Password must a srong password....")
-
+      
       user = new UserModel({
         firstname,
         lastname,
+        username,
         email, 
         password
       })
@@ -47,6 +56,7 @@ const registerUser = async (req, res) =>{
         _id: user._id,
         firstname,
         lastname,
+        username,
         email,
         token
       })

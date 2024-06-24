@@ -105,6 +105,22 @@ const Register = () => {
                 <TextField
                   required
                   fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="family-name"
+                  onChange={(e) =>
+                    updateRegisterInfo({
+                      ...registerInfo,
+                      username: e.target.value
+                    })
+                  }
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
