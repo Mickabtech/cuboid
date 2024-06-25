@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useSnackbar } from 'notistack';
+import { blue } from "@mui/material/colors";
 
 function Copyright(props) {
   return (
@@ -58,7 +59,7 @@ const Login = () => {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color={"blue"}>
             Sign in
           </Typography>
           <Box component="form" onSubmit={loginUser} noValidate sx={{ mt: 1 }}>
