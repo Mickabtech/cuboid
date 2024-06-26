@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { registerUser, loginUser, findUser, getUsers } = require('../controllers/userController')
 
+
+
 const router = express.Router();
 
 const apiReg = process.env.API_REG
